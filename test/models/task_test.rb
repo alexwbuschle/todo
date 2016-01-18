@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
-  test 'should be invalid' do
-    task = Task.new
-    assert task.invalid?
-    assert task.errors.include?(:name)
-    assert task.errors.include?(:user)
-  end
+  should validate_presence_of(:name)
+  should validate_presence_of(:user)
 end
