@@ -1,29 +1,19 @@
-<%= form_for(@task) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<%= render partial: 'shared/flash' %>
 
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@task, html: { class: 'form-horizontal' }) do |f| %>
+  <%= render partial: 'shared/errors', locals: { object: @task } %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, class: 'control-label col-xs-2' %>
+    <div class="col-xs-10"><%= f.text_field :name, class: 'form-control' %></div>
   </div>
-  <div class="field">
-    <%= f.label :done %><br>
-    <%= f.check_box :done %>
+
+  <div class="form-group">
+    <%= f.label :done, class: 'control-label col-xs-2' %>
+    <div class="col-xs-10"><%= f.check_box :done, class: 'form-control' %></div>
   </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+  <%= f.submit(nil, class: 'btn btn-primary') %>
   </div>
 <% end %>
